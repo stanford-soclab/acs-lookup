@@ -8,12 +8,6 @@ import sqlite3
 def allowed_file(filename):
 	return '.' in filename and filename.rsplit('.', 1)[1] == 'csv'
 
-def hello():
-	db = sqlite3.connect('acs/acs.db')
-	for county in db.execute("select county from county_zip where zip = '94305'"):
-		return county[0]
-	return "Hello World!"
-
 # ARGUMENTS: raw uploaded CSV file, array of variable code names in string form
 # OUTPUT: updated CSV with new variables appended, **IN STRING FORM**
 def append_variables(csv_file, variable_codes):

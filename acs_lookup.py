@@ -19,6 +19,9 @@ def home():
 #TOOO: NO HACKY STUFF
 #TODO: CHECK VALID ZIP? / ZIP CODES WITH LEADING ZEROES / COUNTY CODES WITH LEADING ZEROES
 #TODO: CHECK IF APPENDED DATA IS EVEN CORRECT
+#TODO: FEEDBACK WHEN FILETYPE IS INCORRECT
+#TODO: SELECTING VARIABLES TO APPEND
+#TODO: INSTRUCTIONS
 @app.route('/index', methods=['GET', 'POST'])
 def append():
 	# display template for submitting CSV
@@ -56,10 +59,9 @@ def append():
 					headers={ 'Content-disposition': 'attachment; filename=' + output_filename }
 					)
 			return output
-
 		else:
 			# NOT VALID FILE TYPE
-			pass
+			raise
 
 if __name__ == '__main__':
 	app.run(debug=True)
