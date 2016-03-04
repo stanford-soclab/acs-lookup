@@ -22,6 +22,7 @@ def home():
 #TODO: FEEDBACK WHEN FILETYPE IS INCORRECT
 #TODO: SELECTING VARIABLES TO APPEND
 #TODO: INSTRUCTIONS
+#TODO: TRIM /LIB STUFF?
 @app.route('/index', methods=['GET', 'POST'])
 def append():
 	# display template for submitting CSV
