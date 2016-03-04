@@ -74,7 +74,7 @@ def append_variables(csv_file, variable_codes):
 
 	return csv_string
 
-# dict of ACS variables to English fields
+# dict of ACS codes to English fields
 ACS_VARIABLES = {
 	'B03002_001E': 'Hispanic Or Latino Origin By Race Total',
 	'B03002_003E': 'White Alone',
