@@ -1,49 +1,65 @@
 #!/usr/bin/env python
-import sqlite3
 import sys
-import csv
+import DataHelper #local helper file
 
 sys.path.insert(0, 'lib')
-from flask import Flask, Response, render_template, request, make_response
+from flask import Flask, Response, render_template, request
+from werkzeug import secure_filename
 
 app = Flask(__name__)
-
-def allowed_file(filename):
-	return '.' in filename and filename.rsplit('.',1)[1] == 'csv'
 
 @app.route('/home')
 def home():
 	return render_template('index.html')
 
-@app.route("/hello")
-def hello():
-	db = sqlite3.connect('acs/acs.db')
-	for county in db.execute("select county from county_zip where zip = '94305'"):
-		return county[0]
-	return "Hello World!"
-
-@app.route('/acs_append', methods=['GET', 'POST'])
-def acs_append():
+#TODO: HANDLE RAISES/TRY-EXCEPT BLOCKS
+#TODO: UNICODE STUFF?
+#TODO: SANITIZE SQL: https://docs.python.org/2/library/sqlite3.html
+#TODO: this tool will rewrite the CSV file from scratch, could clear some Excel formatting stuff
+#TOOO: NO HACKY STUFF
+#TODO: CHECK VALID ZIP? / ZIP CODES WITH LEADING ZEROES / COUNTY CODES WITH LEADING ZEROES
+#TODO: CHECK IF APPENDED DATA IS EVEN CORRECT
+@app.route('/index', methods=['GET', 'POST'])
+def append():
+	# display template for submitting CSV
 	if request.method == 'GET':
-		return render_template('acs_append.html')
+		return render_template('index.html')
+
+	# logic for manipulating submitted CSV and outputting
 	elif request.method == 'POST':
 		input_file = request.files['input_file']
-		data_reader = csv.reader(input_file)
-		data = []
-		for row in data_reader:
-				data.append(row)
+		acs_variable_codes = ['B03002_001E', 'B03002_003E']
+		# acs_variable_codes = request.files['acs_variable_codes']
 
-		output_string = ''
-		for row in data:
-			row_string = ','.join(str(cell) for cell in row)
-			output_string += row_string + '\n'
+		# checks if inputs exist
+		if not input_file or not acs_variable_codes or len(acs_variable_codes) == 0:
+			# HANDLE EXCEPTION
+			raise 'INPUT ERROR'
 
-		output = Response(
-				output_string,
-				mimetype="text/csv",
-				headers={"Content-disposition":
-								 "attachment; filename=myplot.csv"})
-		return output
+		# checks if input is a CSV
+		if DataHelper.allowed_file(input_file.filename):
+			output_csv_string = ''
+			try:
+				output_csv_string = DataHelper.append_variables(input_file, acs_variable_codes)
+			except Exception, e:
+				# HANDLE EXCEPTION
+				print e
+				raise
+
+			# sanitizes filename
+			output_filename = 'APPENDED-' + secure_filename(input_file.filename)
+
+			# prepares appended CSV file to be downloaded to user
+			output = Response(
+					output_csv_string,
+					mimetype='text/csv',
+					headers={ 'Content-disposition': 'attachment; filename=' + output_filename }
+					)
+			return output
+
+		else:
+			# NOT VALID FILE TYPE
+			pass
 
 if __name__ == '__main__':
-	app.run()
+	app.run(debug=True)
