@@ -12,7 +12,7 @@ app = Flask(__name__)
 def home():
 	return render_template('index.html')
 
-#TODO: HANDLE RAISES/TRY-EXCEPT BLOCKS
+#TODO: HANDLE RAISES/TRY-EXCEPT BLOCKS/ASSERTS
 #TODO: UNICODE STUFF? ALSO MIGHT ASCII ERROR IF NO STR() WRAPPER AROUND APPENDED DATA
 #TODO: SANITIZE SQL: https://docs.python.org/2/library/sqlite3.html
 #TODO: this tool will rewrite the CSV file from scratch, could clear some Excel formatting stuff
@@ -41,9 +41,7 @@ def append():
 		# acs_variable_codes = request.files['acs_variable_codes']
 
 		# checks if inputs exist
-		if not input_file or not acs_variable_codes or len(acs_variable_codes) == 0:
-			# HANDLE EXCEPTION
-			raise 'INPUT ERROR'
+		assert input_file and acs_variable_codes and len(acs_variable_codes) > 0, 'INPUT ERROR'
 
 		# checks if input is a CSV
 		if DataHelper.allowed_file(input_file.filename):
@@ -67,6 +65,7 @@ def append():
 			return output
 		else:
 			# NOT VALID FILE TYPE
+			# HANDLE EXCEPTION
 			raise
 
 if __name__ == '__main__':
