@@ -13,11 +13,10 @@ def home():
 	return render_template('index.html')
 
 #TODO: HANDLE RAISES/TRY-EXCEPT BLOCKS
-#TODO: UNICODE STUFF?
+#TODO: UNICODE STUFF? ALSO MIGHT ASCII ERROR IF NO STR() WRAPPER AROUND APPENDED DATA
 #TODO: SANITIZE SQL: https://docs.python.org/2/library/sqlite3.html
 #TODO: this tool will rewrite the CSV file from scratch, could clear some Excel formatting stuff
-#TOOO: NO HACKY STUFF
-#TODO: CHECK VALID ZIP? / ZIP CODES WITH LEADING ZEROES / COUNTY CODES WITH LEADING ZEROES
+#TODO: CHECK VALID ZIP? / ZIP CODES WITH LEADING ZEROES / COUNTY CODES WITH LEADING ZEROES / HACKY STUFF
 #TODO: CHECK IF APPENDED DATA IS EVEN CORRECT
 #TODO: FEEDBACK WHEN FILETYPE IS INCORRECT
 #TODO: SELECTING VARIABLES TO APPEND
@@ -25,7 +24,10 @@ def home():
 #TODO: TRIM /LIB STUFF?
 #TODO: somehow app.cgi's permissions need to be reset every time upload to AFS
 #TODO: SUEXECD STUFF?
-#TODO: ANOTHER EDGE CASE: columns that don't have headers, so can't assume the file is a rectangle, also encoding gets seemingly destroyed in official test file
+#TODO: MAYBE COMPARE OUTPUT TO INPUT AS SANITY CHECK?
+#TODO: ASSUMES COMMAS AS DELIMITERS
+#TODO: PROCESSING METER?
+#TODO: FILLED IN DATA SEEMS RATHER SPARSE?
 @app.route('/index', methods=['GET', 'POST'])
 def append():
 	# display template for submitting CSV

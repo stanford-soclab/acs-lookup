@@ -45,7 +45,7 @@ def append_variables(csv_file, variable_codes):
 
 			if len(county_query_results) > 0:
 				# HACKY HACKY HACKY
-				county = '0' + county_query_results[0][0]
+				county = str('0' + county_query_results[0][0])
 
 				# append variable values for the given row
 				for code in variable_codes:
@@ -54,7 +54,7 @@ def append_variables(csv_file, variable_codes):
 
 					if len(variable_query_results) > 0:
 						# HACKY HACKY HACKY
-						variable_value = variable_query_results[0][0]
+						variable_value = str(variable_query_results[0][0])
 						array_of_arrays[row_index].append(variable_value)
 
 	# closes the db after usage
@@ -63,7 +63,13 @@ def append_variables(csv_file, variable_codes):
 	# converts modified csv into string for outputting
 	csv_string = ''
 	for row in array_of_arrays:
-		row_string = ','.join(str(cell) for cell in row)
+		# if a row contains a cell whose contents contain a comma,
+		# surround that cell with an extra layer of quotes so the extra comma isn't mistaken for a delimiter
+		for i in xrange(len(row)):
+			if ',' in row[i]:
+				row[i] = '"' + row[i] + '"'
+
+		row_string = ','.join(row)
 		csv_string += row_string + '\n'
 
 	return csv_string
