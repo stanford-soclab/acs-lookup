@@ -25,6 +25,7 @@ def home():
 #TODO: TRIM /LIB STUFF?
 #TODO: somehow app.cgi's permissions need to be reset every time upload to AFS
 #TODO: SUEXECD STUFF?
+#TODO: ANOTHER EDGE CASE: columns that don't have headers, so can't assume the file is a rectangle, also encoding gets seemingly destroyed in official test file
 @app.route('/index', methods=['GET', 'POST'])
 def append():
 	# display template for submitting CSV
