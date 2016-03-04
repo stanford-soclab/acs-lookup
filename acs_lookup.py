@@ -23,6 +23,7 @@ def home():
 #TODO: SELECTING VARIABLES TO APPEND
 #TODO: INSTRUCTIONS
 #TODO: TRIM /LIB STUFF?
+#TODO: somehow app.cgi's permissions need to be reset every time upload to AFS
 @app.route('/index', methods=['GET', 'POST'])
 def append():
 	# display template for submitting CSV
