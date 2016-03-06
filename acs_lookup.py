@@ -19,7 +19,6 @@ def home():
 #TODO: CHECK VALID ZIP? / ZIP CODES WITH LEADING ZEROES / COUNTY CODES WITH LEADING ZEROES / HACKY STUFF
 #TODO: CHECK IF APPENDED DATA IS EVEN CORRECT
 #TODO: FEEDBACK WHEN FILETYPE IS INCORRECT
-#TODO: SELECTING VARIABLES TO APPEND
 #TODO: INSTRUCTIONS
 #TODO: TRIM /LIB STUFF?
 #TODO: somehow app.cgi's permissions need to be reset every time upload to AFS
@@ -32,13 +31,12 @@ def home():
 def append():
 	# display template for submitting CSV
 	if request.method == 'GET':
-		return render_template('index.html')
+		return render_template('index.html', acs_variables=DataHelper.ACS_VARIABLES)
 
 	# logic for manipulating submitted CSV and outputting
 	elif request.method == 'POST':
 		input_file = request.files['input_file']
-		acs_variable_codes = ['B03002_001E', 'B03002_003E']
-		# acs_variable_codes = request.files['acs_variable_codes']
+		acs_variable_codes = request.form.getlist('acs_variables')
 
 		# checks if inputs exist
 		assert input_file and acs_variable_codes and len(acs_variable_codes) > 0, 'INPUT ERROR'
