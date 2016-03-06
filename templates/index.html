@@ -6,18 +6,16 @@
 			<label for="input_file">File:</label>
 			<input type="file" name="input_file" id="input_file">
 		</div>
-		<div class="form-group">
-			<label for="fields">Fields:</label>
-			<input type="text" name="fields" id="fields">
-		</div>
 
-			<!-- <select id = "dropdown" multiple class="form-control">
-			  <option>Variable 1</option>
-			  <option>Variable 2</option>
-			  <option>Variable 3</option>
-			  <option>Variable 4</option>
-			  <option>Variable 5</option>
-			</select> -->
+		<div class="form-group">
+			<label for="acs_variables">ACS Variables:</label>
+			<br>
+			<select type="list" id="acs_variables" name="acs_variables" multiple class="form-control">
+				{% for key in acs_variables %}
+					<option value="{{ key }}">{{ acs_variables[key] }}</option>
+				{% endfor %}
+			</select>
+		</div>
 			
 		<div class="form-group">
 			<input type="submit" value="Submit" class="btn btn-primary">

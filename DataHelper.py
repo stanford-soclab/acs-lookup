@@ -3,6 +3,7 @@
 ################################################
 import csv
 import sqlite3
+from collections import OrderedDict
 
 # checks if filename is .csv
 def allowed_file(filename):
@@ -74,33 +75,33 @@ def append_variables(csv_file, variable_codes):
 
 	return csv_string
 
-# dict of ACS codes to English fields
-ACS_VARIABLES = {
-	'B03002_001E': 'Hispanic Or Latino Origin By Race Total',
-	'B03002_003E': 'White Alone',
-	'B03002_004E': 'Black Or African American Alone',
-	'B03002_012E': 'Hispanic Or Latino',
-	'B05012_001E': 'Nativity In The United States',
-	'B05012_003E': 'Nativity In The United States (Foreign-Born)',
-	'B01003_001E': 'Total Population',
-	'B05001_001E': 'Nativity And Citizenship Status In The United States Total',
-	'B05001_006E': 'Nativity and Citizenship Status In The United States (Non-Citizen)',
-	'B17001_001E': 'Poverty Status In The Past 12 Months Total',
-	'B17001_002E': 'Income In The Past 12 Months Below Poverty Level',
-	'B17001A_002E': 'Poverty Status In The Past 12 Months Total (White Alone)',
-	'B17001A_001E': 'Income In The Past 12 Months Below Poverty Level (White Alone)',
-	'B17001B_002E': 'Poverty Status In The Past 12 Months Total (Black Or African American Alone)',
-	'B17001B_001E': 'Income In The Past 12 Months Below Poverty Level (Black Or African American Alone)',
-	'B17001I_002E': 'Poverty Status In The Past 12 Months Total (Hispanic Or Latino)',
-	'B17001I_001E': 'Income In The Past 12 Months Below Poverty Level (Hispanic Or Latino)',
-	'B19013_001E': 'Median Household Income In The Past 12 Months',
-	'B19013A_001E': 'Median Household Income In The Past 12 Months (In 2012 Inflation-Adjusted Dollars) (White Alone Householder)',
-	'B19013B_001E': 'Median Household Income In The Past 12 Months (In 2012 Inflation-Adjusted Dollars) (Black Or African American Alone Householder)',
-	'B19013I_001E': 'Median Household Income In The Past 12 Months (In 2012 Inflation-Adjusted Dollars) (Hispanic Or Latino Householder)',
-	'B19051_001E': 'Earnings In The Past 12 Months For Households Total',
-	'B01002_001E': 'Median Age By Sex Total',
-	'B23025_001E': 'Employment Status For The Population 16 Years And Over Total',
-	'B23025_005E': 'Unemployed',
-	'B23025_003E': 'Civilian Labor Force',
-	'B19083_001E': 'Gini'
-}
+# dict of ACS codes to English fields; uses OrderedDict so the options appear in order on selection box
+ACS_VARIABLES = OrderedDict([
+	('B03002_001E', 'Hispanic Or Latino Origin By Race Total'),
+	('B03002_003E', 'White Alone'),
+	('B03002_004E', 'Black Or African American Alone'),
+	('B03002_012E', 'Hispanic Or Latino'),
+	('B05012_001E', 'Nativity In The United States'),
+	('B05012_003E', 'Nativity In The United States (Foreign-Born)'),
+	('B01003_001E', 'Total Population'),
+	('B05001_001E', 'Nativity And Citizenship Status In The United States Total'),
+	('B05001_006E', 'Nativity and Citizenship Status In The United States (Non-Citizen)'),
+	('B17001_001E', 'Poverty Status In The Past 12 Months Total'),
+	('B17001_002E', 'Income In The Past 12 Months Below Poverty Level'),
+	('B17001A_002E', 'Poverty Status In The Past 12 Months Total (White Alone)'),
+	('B17001A_001E', 'Income In The Past 12 Months Below Poverty Level (White Alone)'),
+	('B17001B_002E', 'Poverty Status In The Past 12 Months Total (Black Or African American Alone)'),
+	('B17001B_001E', 'Income In The Past 12 Months Below Poverty Level (Black Or African American Alone)'),
+	('B17001I_002E', 'Poverty Status In The Past 12 Months Total (Hispanic Or Latino)'),
+	('B17001I_001E', 'Income In The Past 12 Months Below Poverty Level (Hispanic Or Latino)'),
+	('B19013_001E', 'Median Household Income In The Past 12 Months'),
+	('B19013A_001E', 'Median Household Income In The Past 12 Months (In 2012 Inflation-Adjusted Dollars) (White Alone Householder)'),
+	('B19013B_001E', 'Median Household Income In The Past 12 Months (In 2012 Inflation-Adjusted Dollars) (Black Or African American Alone Householder)'),
+	('B19013I_001E', 'Median Household Income In The Past 12 Months (In 2012 Inflation-Adjusted Dollars) (Hispanic Or Latino Householder)'),
+	('B19051_001E', 'Earnings In The Past 12 Months For Households Total'),
+	('B01002_001E', 'Median Age By Sex Total'),
+	('B23025_001E', 'Employment Status For The Population 16 Years And Over Total'),
+	('B23025_005E', 'Unemployed'),
+	('B23025_003E', 'Civilian Labor Force'),
+	('B19083_001E', 'Gini')
+])
