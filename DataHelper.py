@@ -22,22 +22,21 @@ def append_variables(csv_file, variable_codes):
 	
 	# modifies csv in place to append extra column
 	for row_index in xrange(len(array_of_arrays)):
-		if row_index == 0:
-			# checks if the first row is labled with some variation of 'zip', saves that index
+		if (row_index == 0 or row_index == 1) and index_of_zip is None:
+			# checks if the first/second row is labled with some variation of 'zip', saves that index
 			row = array_of_arrays[row_index]
 			for cell_index in xrange(len(row)):
 				if row[cell_index].lower() in ['zip', 'zip_code', 'zipcode', 'zip-code', 'zipcodes', 'zip_codes', 'zip-codes']:
 					index_of_zip = cell_index
 					break
 
-			assert index_of_zip != None, 'ZIP COLUMN NOT FOUND'
-
 			# appends variable names of desired variable codes to the first row
-			for code in variable_codes:
-				array_of_arrays[row_index].append(ACS_VARIABLES[code])
+			if index_of_zip != None:
+				for code in variable_codes:
+					array_of_arrays[row_index].append(ACS_VARIABLES[code])
 
 		else:
-			assert index_of_zip != None, 'ZIP COLUMN ERROR'
+			assert index_of_zip != None, 'ZIP COLUMN NOT FOUND'
 
 			zip_code = array_of_arrays[row_index][index_of_zip]
 
@@ -46,9 +45,9 @@ def append_variables(csv_file, variable_codes):
 
 			if len(county_query_results) > 0:
 				# HACKY HACKY HACKY
-				county = str('0' + county_query_results[0][0])
-
-				# append variable values for the given row
+				county = str('0' + county_query_results[0][0]) #only use the first county ?
+				
+                                # append variable values for the given row
 				for code in variable_codes:
 					variable_query = "select {} from acs_data where county = '{}'".format(code, county)
 					variable_query_results = db.execute(variable_query).fetchall()
