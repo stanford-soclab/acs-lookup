@@ -45,12 +45,15 @@ def append_variables(csv_file, variable_codes):
 
 			if len(county_query_results) > 0:
 				# HACKY HACKY HACKY
-				county = str('0' + county_query_results[0][0]) #only use the first county ?
-				
+                                county = str(county_query_results[0][0])
+                                if len(county) < 5:
+                                    for _ in xrange(5-len(county)): county = '0' + county
+                                
                                 # append variable values for the given row
 				for code in variable_codes:
 					variable_query = "select {} from acs_data where county = '{}'".format(code, county)
 					variable_query_results = db.execute(variable_query).fetchall()
+					#array_of_arrays[row_index].append(str(variable_query_results))
 
 					if len(variable_query_results) > 0:
 						# HACKY HACKY HACKY
