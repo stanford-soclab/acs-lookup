@@ -17,7 +17,6 @@ def home():
 #TODO: SANITIZE SQL: https://docs.python.org/2/library/sqlite3.html
 #TODO: this tool will rewrite the CSV file from scratch, could clear some Excel formatting stuff
 #TODO: CHECK VALID ZIP? / ZIP CODES WITH LEADING ZEROES / COUNTY CODES WITH LEADING ZEROES / HACKY STUFF
-#TODO: CHECK IF APPENDED DATA IS EVEN CORRECT
 #TODO: FEEDBACK WHEN FILETYPE IS INCORRECT
 #TODO: INSTRUCTIONS
 #TODO: TRIM /LIB STUFF?
@@ -26,7 +25,6 @@ def home():
 #TODO: MAYBE COMPARE OUTPUT TO INPUT AS SANITY CHECK?
 #TODO: ASSUMES COMMAS AS DELIMITERS
 #TODO: PROCESSING METER?
-#TODO: FILLED IN DATA SEEMS RATHER SPARSE?
 @app.route('/index', methods=['GET', 'POST'])
 def append():
 	# display template for submitting CSV
