@@ -43,12 +43,9 @@ def append():
 		if DataHelper.allowed_file(input_file.filename):
 			output_csv_string = ''
 			try:
-				output_csv_string = DataHelper.append_variables(input_file, acs_variable_codes)
-			except Exception, e:
-				# HANDLE EXCEPTION
-				print e
-				raise
-
+				output_csv_string, error = DataHelper.append_variables(input_file, acs_variable_codes)
+			except:
+                                print "Unable to append variables:", sys.exc_info()[0]
 			# sanitizes filename
 			output_filename = 'APPENDED-' + secure_filename(input_file.filename)
 
