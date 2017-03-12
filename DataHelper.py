@@ -92,7 +92,10 @@ def append_variables(csv_file, variable_codes):
                                         county_list.append(county)
                                 
                                 # append variable values for the given row
-				for code in variable_codes:
+                                variable_values = weighted_averages(variable_codes, county_list)
+                                for val in variable_values:
+				        array_of_arrays[row_index].append(variable_value)
+				'''for code in variable_codes:
 					variable_query = "select {} from acs_data where county = '{}'".format(code, county)
 					variable_query_results = db.execute(variable_query).fetchall()
 
@@ -102,7 +105,7 @@ def append_variables(csv_file, variable_codes):
 						array_of_arrays[row_index].append(variable_value)
                                         else:
                                                 error = "Row {}: did not find variable '{}' for county {}".format(row_index, zip_code, county)
-
+'''
                         else:
                                 error = "Row {}: did not find county codes for zip code {}".format(row_index, zip_code)
 
