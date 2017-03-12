@@ -13,15 +13,13 @@ def allowed_file(filename):
 	return '.' in filename and filename.rsplit('.', 1)[1] == 'csv'
 
 # TODO FUNCTION DESCRIPTION HERE
-def weighted_averages(variable_codes, county_list):
+def weighted_averages(db, variable_codes, county_list):
     #create array for sums over all variables
     total_pop = 0
     weighted_sums = [0]*len(variable_codes)
     for county in county_list:
             # add population of county to total_pop
-            total_pop += 1 # TODO delete this when not needed
             variable_query = "select B01003_001E from acs_data where county = '{}'".format(county)
-            '''
             variable_query_results = db.execute(variable_query).fetchall()
             if len(variable_query_results) > 0:
                     county_pop = float(variable_query_results[0][0])
@@ -43,7 +41,6 @@ def weighted_averages(variable_codes, county_list):
                                     weighted_sums[i] += float(variable_values[i])*county_pop
 
     # If no county information found for county_list, return array of 'n/a'
-    '''
     if total_pop == 0:
             return ['n/a' for var in variable_codes]
     else:
@@ -97,7 +94,7 @@ def append_variables(csv_file, variable_codes):
                                                 for _ in xrange(5-len(county)): county = '0' + county # add 0s to beginning of county code if needed
                                         county_list.append(county)
                                 # append variable values for the given row
-                                variable_values = weighted_averages(variable_codes, county_list)
+                                variable_values = weighted_averages(db, variable_codes, county_list)
                                 for val in variable_values:
 				        array_of_arrays[row_index].append(val)
                                 '''
