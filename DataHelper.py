@@ -5,24 +5,28 @@ import csv
 import sqlite3
 from collections import OrderedDict
 
+# TODO add something that checks length of zip and county codes, adds 0 to front if necessary
+# TODO why do 4 digit zipcodes not show up?
+
 # checks if filename is .csv
 def allowed_file(filename):
 	return '.' in filename and filename.rsplit('.', 1)[1] == 'csv'
 
-
+# TODO FUNCTION DESCRIPTION HERE
 def weighted_averages(variable_codes, county_list):
     #create array for sums over all variables
     total_pop = 0
-    weighted_sums = [0 for i in xrange(len(variable_codes))] 
+    weighted_sums = [0]*len(variable_codes)
     for county in county_list:
             # add population of county to total_pop
+            total_pop += 1 # TODO delete this when not needed
             variable_query = "select B01003_001E from acs_data where county = '{}'".format(county)
+            '''
             variable_query_results = db.execute(variable_query).fetchall()
             if len(variable_query_results) > 0:
                     county_pop = float(variable_query_results[0][0])
                     total_pop += county_pop
             else: continue # if can't find total population of county, ignore county
-
             # add weighted value of variable to weighted_sums
             code_string = ""
             for code in variable_codes:
@@ -39,11 +43,11 @@ def weighted_averages(variable_codes, county_list):
                                     weighted_sums[i] += float(variable_values[i])*county_pop
 
     # If no county information found for county_list, return array of 'n/a'
+    '''
     if total_pop == 0:
             return ['n/a' for var in variable_codes]
     else:
-            return [s/total_pop for s in weighted_sums]
-
+            return [str(s/total_pop) for s in weighted_sums]
 
 # ARGUMENTS: raw uploaded CSV file, array of variable code names in string form
 # OUTPUT: updated CSV with new variables appended, **IN STRING FORM**
@@ -77,7 +81,9 @@ def append_variables(csv_file, variable_codes):
                             break
                 
                 else:
-			zip_code = array_of_arrays[row_index][index_of_zip]
+			zip_code = str(array_of_arrays[row_index][index_of_zip])
+                        if len(zip_code) < 5:
+                                for _ in xrange(5-len(zip_code)): zip_code = '0' + zip_code # add 0s to beginning of county code if needed
 
 			county_query = "select county from county_zip where zip = '{}'".format(zip_code)
 			county_query_results = db.execute(county_query).fetchall()
@@ -90,12 +96,12 @@ def append_variables(csv_file, variable_codes):
                                         if len(county) < 5:
                                                 for _ in xrange(5-len(county)): county = '0' + county # add 0s to beginning of county code if needed
                                         county_list.append(county)
-                                
                                 # append variable values for the given row
                                 variable_values = weighted_averages(variable_codes, county_list)
                                 for val in variable_values:
 				        array_of_arrays[row_index].append(val)
-				'''for code in variable_codes:
+                                '''
+                                for code in variable_codes:
 					variable_query = "select {} from acs_data where county = '{}'".format(code, county)
 					variable_query_results = db.execute(variable_query).fetchall()
 
@@ -105,7 +111,7 @@ def append_variables(csv_file, variable_codes):
 						array_of_arrays[row_index].append(variable_value)
                                         else:
                                                 error = "Row {}: did not find variable '{}' for county {}".format(row_index, zip_code, county)
-'''
+                                                '''
                         else:
                                 error = "Row {}: did not find county codes for zip code {}".format(row_index, zip_code)
 
