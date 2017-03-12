@@ -48,9 +48,12 @@ def append_variables(csv_file, variable_codes):
 
 			if len(county_query_results) > 0:
 				# HACKY HACKY HACKY - only using first county, missing 0s for some county codes, adding them manually
-                                county = str(county_query_results[0][0])
-                                if len(county) < 5:
-                                    for _ in xrange(5-len(county)): county = '0' + county
+                                county_list = []
+                                for county_query in county_query_results:
+                                        county = str(county_query[0])
+                                        if len(county) < 5:
+                                                for _ in xrange(5-len(county)): county = '0' + county # add 0s to beginning of county code if needed
+                                        county_list.append(county)
                                 
                                 # append variable values for the given row
 				for code in variable_codes:
