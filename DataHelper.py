@@ -12,39 +12,30 @@ from collections import OrderedDict
 def allowed_file(filename):
 	return '.' in filename and filename.rsplit('.', 1)[1] == 'csv'
 
-# TODO FUNCTION DESCRIPTION HERE
+# ARGUMENTS: database, list of variables, list of counties
+# OUTPUT: list of weighted averages for variables, weighted over list of counties by total population of each county
 def weighted_averages(db, variable_codes, county_list):
-    #create array for sums over all variables
-    total_pop = 0
-    weighted_sums = [0]*len(variable_codes)
-    for county in county_list:
-            # add population of county to total_pop
-            variable_query = "select B01003_001E from acs_data where county = '{}'".format(county)
-            variable_query_results = db.execute(variable_query).fetchall()
-            if len(variable_query_results) > 0:
-                    county_pop = float(variable_query_results[0][0])
-                    total_pop += county_pop
-            else: continue # if can't find total population of county, ignore county
-            # add weighted value of variable to weighted_sums
-            code_string = ""
-            for code in variable_codes:
-                    code_string += code + ", "
-            code_string = code_string[:-2]
-            variable_query = "select {} from acs_data where county = '{}'".format(code_string, county)
-            variable_query_results = db.execute(variable_query).fetchall()
+        result = []
+        # Calculate weighted average for each variable
+        for code in variable_codes:
+                total_pop, weighted_sum = 0, 0
+                for county in county_list:
+                        # Add population of county to total_pop
+                        variable_query = "select B01003_001E, {} from acs_data where county = '{}'".format(code, county)
+                        variable_query_results = db.execute(variable_query).fetchall()
+                        if len(variable_query_results) > 0: # If no data on county, skip
+                                county_pop, var_val = variable_query_results[0]
+                                if county_pop != '' and var_val != '': # If either population or variable value is missing, ignore
+                                        total_pop += float(county_pop)
+                                        weighted_sum += float(county_pop)*float(var_val)
+                                        
+                if total_pop != 0: # If at least one county had non-empty variable value
+                        result.append(str(int(weighted_sum/total_pop))) # Round weighted average to nearest int
+                else:
+                        result.append("n/a")
 
-            if len(variable_query_results) > 0:
-                    variable_values = variable_query_results[0]
-                    for i in xrange(len(variable_values)):
-                            # checks if value is not available for this county, if not available will return empty string
-                            if variable_values[i] != '':
-                                    weighted_sums[i] += float(variable_values[i])*county_pop
+        return result
 
-    # If no county information found for county_list, return array of 'n/a'
-    if total_pop == 0:
-            return ['n/a' for var in variable_codes]
-    else:
-            return [str(s/total_pop) for s in weighted_sums]
 
 # ARGUMENTS: raw uploaded CSV file, array of variable code names in string form
 # OUTPUT: updated CSV with new variables appended, **IN STRING FORM**
