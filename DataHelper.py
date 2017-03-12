@@ -9,6 +9,42 @@ from collections import OrderedDict
 def allowed_file(filename):
 	return '.' in filename and filename.rsplit('.', 1)[1] == 'csv'
 
+
+def weighted_averages(variable_codes, county_list):
+    #create array for sums over all variables
+    total_pop = 0
+    weighted_sums = [0 for i in xrange(len(variable_codes))] 
+    for county in county_list:
+            # add population of county to total_pop
+            variable_query = "select B01003_001E from acs_data where county = '{}'".format(county)
+            variable_query_results = db.execute(variable_query).fetchall()
+            if len(variable_query_results) > 0:
+                    county_pop = float(variable_query_results[0][0])
+                    total_pop += county_pop
+            else: break # if can't find total population of county, ignore county
+
+            # add weighted value of variable to weighted_sums
+            code_string = ""
+            for code in variable_codes:
+                    code_string += code + ", "
+            code_string = code_string[:-2]
+            variable_query = "select {} from acs_data where county = '{}'".format(code_string, county)
+            variable_query_results = db.execute(variable_query).fetchall()
+
+            if len(variable_query_results) > 0:
+                    variable_values = variable_query_results[0]
+                    for i in xrange(len(variable_values)):
+                            # checks if value is not available for this county, if not available will return empty string
+                            if variable_values[i] != '':
+                                    weighted_sums[i] += float(variable_values[i])*county_pop
+
+    # If no county information found for county_list, return array of 'n/a'
+    if total_pop == 0:
+            return ['n/a' for var in variable_codes]
+    else:
+            return [sum/total_pop for sum in weighted_sums]
+
+
 # ARGUMENTS: raw uploaded CSV file, array of variable code names in string form
 # OUTPUT: updated CSV with new variables appended, **IN STRING FORM**
 def append_variables(csv_file, variable_codes):
