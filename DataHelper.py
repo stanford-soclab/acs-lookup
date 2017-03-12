@@ -21,7 +21,7 @@ def weighted_averages(variable_codes, county_list):
             if len(variable_query_results) > 0:
                     county_pop = float(variable_query_results[0][0])
                     total_pop += county_pop
-            else: break # if can't find total population of county, ignore county
+            else: continue # if can't find total population of county, ignore county
 
             # add weighted value of variable to weighted_sums
             code_string = ""
@@ -42,7 +42,7 @@ def weighted_averages(variable_codes, county_list):
     if total_pop == 0:
             return ['n/a' for var in variable_codes]
     else:
-            return [sum/total_pop for sum in weighted_sums]
+            return [s/total_pop for s in weighted_sums]
 
 
 # ARGUMENTS: raw uploaded CSV file, array of variable code names in string form
@@ -94,7 +94,7 @@ def append_variables(csv_file, variable_codes):
                                 # append variable values for the given row
                                 variable_values = weighted_averages(variable_codes, county_list)
                                 for val in variable_values:
-				        array_of_arrays[row_index].append(variable_value)
+				        array_of_arrays[row_index].append(val)
 				'''for code in variable_codes:
 					variable_query = "select {} from acs_data where county = '{}'".format(code, county)
 					variable_query_results = db.execute(variable_query).fetchall()
