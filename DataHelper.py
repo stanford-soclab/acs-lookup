@@ -42,7 +42,7 @@ def weighted_averages(db, variable_codes, county_list):
 def append_variables(csv_file, variable_codes):
 	db = sqlite3.connect('acs/acs.db') # opens the ACS db
 	index_of_zip = None # the cell index of the ZIP column
-        error = '' # empty string for now
+        error = '' # empty string for now, TODO track errors somehow
 
 	# reads in csv as array of arrays
 	array_of_arrays = []
@@ -51,6 +51,7 @@ def append_variables(csv_file, variable_codes):
 	
 	# modifies csv in place to append extra column
 	for row_index in xrange(len(array_of_arrays)):
+                # First row
 		if row_index == 0: 
 			# checks if the first/second row is labled with some variation of 'zip', saves that index
 			row = array_of_arrays[row_index]
@@ -67,7 +68,8 @@ def append_variables(csv_file, variable_codes):
 		        else:
 			    error = 'First row of file: did not find column for zipcode\n'
                             break
-                
+
+                # Other rows
                 else:
 			zip_code = str(array_of_arrays[row_index][index_of_zip])
                         if len(zip_code) < 5:
@@ -88,18 +90,6 @@ def append_variables(csv_file, variable_codes):
                                 variable_values = weighted_averages(db, variable_codes, county_list)
                                 for val in variable_values:
 				        array_of_arrays[row_index].append(val)
-                                '''
-                                for code in variable_codes:
-					variable_query = "select {} from acs_data where county = '{}'".format(code, county)
-					variable_query_results = db.execute(variable_query).fetchall()
-
-					if len(variable_query_results) > 0:
-						# HACKY HACKY HACKY - just using first results for a county
-						variable_value = str(variable_query_results[0][0])
-						array_of_arrays[row_index].append(variable_value)
-                                        else:
-                                                error = "Row {}: did not find variable '{}' for county {}".format(row_index, zip_code, county)
-                                                '''
                         else:
                                 error = "Row {}: did not find county codes for zip code {}".format(row_index, zip_code)
 
