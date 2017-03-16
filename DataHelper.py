@@ -72,9 +72,9 @@ def append_variables(csv_file, variable_codes):
                 # Other rows
                 else:
 			zip_code = str(array_of_arrays[row_index][index_of_zip])
-                        if len(zip_code) < 5:
-                                for _ in xrange(5-len(zip_code)): zip_code = '0' + zip_code # add 0s to beginning of county code if needed
-
+                        # Remove extra zeroes from beginning of zip code; TODO fix the zip codes in acs directory instead
+                        while zip_code[0] == '0':
+                                zip_code = zip_code[1:] 
 			county_query = "select county from county_zip where zip = '{}'".format(zip_code)
 			county_query_results = db.execute(county_query).fetchall()
 
