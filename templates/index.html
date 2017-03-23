@@ -1,24 +1,256 @@
-{% extends "application.html" %}
-{% block content %}
-	<h4 class = "instruction">Step 1: Please upload a .csv that contains your current data set.</h4>
-	<form method="POST" enctype="multipart/form-data" action="index" class="form-inline">
-		<div class="form-group">
-			<label for="input_file">File:</label>
-			<input type="file" name="input_file" id="input_file">
-		</div>
+<!DOCTYPE html>
+<!--[if IE 7]> <html lang="en" class="ie7"> <![endif]-->
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="en">
+<!--<![endif]-->
 
-		<div class="form-group">
-			<label for="acs_variables">ACS Variables:</label>
-			<br>
-			<select type="list" id="acs_variables" name="acs_variables" multiple class="form-control">
-				{% for key in acs_variables %}
-					<option value="{{ key }}">{{ acs_variables[key] }}</option>
-				{% endfor %}
-			</select>
-		</div>
-			
-		<div class="form-group">
-			<input type="submit" value="Submit" class="btn btn-primary">
-		</div>
-	</form>
-{% endblock %}
+<head>
+<title>ACS Database</title>
+<!-- TemplateParam name="theme" type="text" value="cardinal" -->
+
+<!-- Meta -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="ACS Database" />
+<meta name="author" content="Lab for Social Research" />
+<!-- These meta tags are used when someone shares a link to this page on Facebook,
+     Twitter or other social media sites. All tags are optional, but including them
+     and customizing the content for specific sites can help the visibility of your
+     content.
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Title when shared to social media sites" />
+<meta property="og:description" content="Snippet for social media sites." />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@TwitterHandle" />
+<meta name="twitter:title" content="Title for Twitter" />
+<meta name="twitter:description" content="Snippet when tweet is expanded." />
+<meta name="twitter:image" content="http://stanford.edu/about/images/intro_about.jpg" />
+<link rel="publisher" href="https://plus.google.com/id# of Google+ entity associated with your department or group" />
+-->
+
+<!-- CSS -->
+<link rel="stylesheet" href="{{ url_for('static', filename='assets/cardinal/css/bootstrap.min.css') }}" type="text/css" />
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" type="text/css" />
+<link rel="stylesheet" href="{{ url_for('static', filename='assets/cardinal/css/base.min.css?v=0.1') }}" type="text/css" />
+<link rel="stylesheet" href="{{ url_for('static', filename='assets/cardinal/css/custom.css?v=0.1') }}" type="text/css"/>
+<!--[if lt IE 9]>
+  <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+<!--[if IE 8]>
+  <link rel="stylesheet" type="text/css" href="assets/cardinal/css/ie/ie8.css" />
+<![endif]-->
+<!--[if IE 7]>
+  <link rel="stylesheet" type="text/css" href="assets/cardinal/css/ie/ie7.css" />
+<![endif]-->
+<!-- JS and jQuery --> 
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script> 
+<script src="{{ url_for('static', filename='assets/cardinal/js/modernizr.custom.17475.js') }}"></script> 
+<script src="{{ url_for('static', filename='assets/cardinal/js/bootstrap.min.js') }}"></script> 
+
+<!--[if lt IE 9]>
+  <script src="assets/cardinal/js/respond.js"></script>
+<![endif]--> 
+
+<!-- custom JS -->
+<script src="{{ url_for('static', filename='assets/cardinal/js/base.js?v=1.0') }}"></script>
+<script src="{{ url_for('static', filename='assets/cardinal/js/custom.js') }}"></script>
+</head>
+
+<body class="home"> <!-- class="home" underlines the Home link in the top nav -->
+<div id="su-wrap"> <!-- used to force footer to bottom of short pages -->
+  <div id="su-content"> <!-- used to force footer to bottom of short pages --> 
+    
+    <!--=== Top ===-->
+    <div id="top">
+      <div class="container"> 
+        <!--=== Skip links ===-->
+        <div id="skip"> <a href="#content" onClick="$('#content').focus()">Skip to content</a> </div>
+        <!-- /Skip links --> 
+      </div>
+    </div>
+    <!--/top--> 
+    
+    <!--=== Header ===-->
+    <div id="header" class="clearfix" role="banner">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-8"> 
+            <!-- Logo -->
+            <div id="logo" class="clearfix"> <a href="http://www.stanford.edu/"><img class="img-responsive" src="{{ url_for('static', filename='assets/cardinal/images/stanford-white@2x.png') }}"  alt="Stanford University" /></a> </div>
+            <!-- /logo -->
+            <div id="signature">
+              <div id="site-name">
+                <a href="/">
+                  <span id="site-name-1">Lab for Social Research</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Menu -->
+    <div id="mainmenu" class="clearfix" role="navigation">
+      <div class="container">
+        <div class="navbar navbar-default"> 
+          
+          <!-- main navigation -->
+          <button type="button" class="navbar-toggle btn-navbar" data-toggle="collapse" data-target=".navbar-collapse"> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="menu-text">Menu</span></button>
+          <!-- /nav-collapse -->
+          
+          <div class="navbar-collapse collapse"> 
+            <!--search box-->
+            <div id="nav-search" role="search">
+              <form action="http://www.stanford.edu/search" method="get" id="search-form" accept-charset="UTF-8">
+                <h2 class="hidden">Search form</h2>
+                <label class="hidden" for="search-field">Search term</label>
+                <input name="cx" type="hidden" value="003265255082301896483:sq5n7qoyfh8">
+                <input name="cof" type="hidden" value="FORID:9">
+                <input name="ie" type="hidden" value="UTF-8">
+                <!-- replace value in next line with your site URL -->
+                <input name="as_sitesearch" type="hidden" value="facts.stanford.edu">
+                <input title="Search string" class="input-medium" placeholder="Search this site&hellip;" type="text" id="search-field" name="q" value="" size="15" maxlength="128" />
+                <button id="search-btn" type="submit" name="submit"  aria-label="Search" formmethod="get"><i class="fa fa-search"></i></button>
+              </form>
+            </div>
+            <div  role="navigation">
+              <div id="primary-nav">
+                <ul class="nav navbar-nav" aria-label="primary navigation">
+                  <li id="nav-home"> <a href="http://lsr.stanford.edu">Home</a></li>
+                  <li id="nav-1"> <a href="http://lsr.stanford.edu/people">People</a> </li>
+                  <li id="nav-2"> <a href="http://lsr.stanford.edu/participate">Participate</a> </li>
+                  <li id="nav-3"> <a href="http://lsr.stanford.edu/news">News</a> </li>
+                  <li id="nav-4"> <a href="http://lsr.stanford.edu/contact">Contact</a> </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <!-- /nav-collapse --> 
+        </div>
+        <!-- /navbar --> 
+        
+      </div>
+      <!-- /container --> 
+    </div>
+    <!-- /mainmenu --> 
+    
+    <!-- main content -->
+    <div id="content" class="container" role="main" tabindex="0">
+      <h1 class="hide">Cardinal Theme</h1>
+      <div class="row">
+                <!-- Main column -->
+        <div id="main-content" class="col-md-9 col-md-push-3" role="main">
+          <div id="feature-banner" class="margin-bottom-30"> <img class="img-responsive" src="http://www.stanford.edu/assets/su-images/feature/ht_quad6am.jpg" />
+            <div class="feature-caption">
+              <h2>American Community Survey Database (ACS)</h2>
+            </div>
+          </div>
+          
+          <h2 class="headline">Append Variables</h2>
+          <p>To append variables to an existing dataset, upload the dataset as a .csv file, then select the variables to append, and submit the request. For more information about the variables, view the links on the left. </p>
+          <p>Note: The inputted file must contain a zipcode column. </p>
+          <body>
+            <h4><a>Step 1: Upload file (.csv)</a></h4>
+            <form method="POST" enctype="multipart/form-data" action="index" class="form-inline">
+              <p>
+                <div class="form-group">
+                  <label for="input_file">File:</label>
+                  <input type="file" name="input_file" required id="input_file">
+                </div>
+              </p>
+
+              <h4><a>Step 2: Select variables to append</a></h4>
+              <div class="form-group">
+                <p>
+                  <label for="acs_variables">Variables:</label>
+                  <br>
+                  <select type="list" id="acs_variables" name="acs_variables" multiple required class="form-control">
+                    {% for key in acs_variables %}
+                      <option value="{{ key }}">{{ acs_variables[key] }}</option>
+                    {% endfor %}
+                  </select>
+                </p>
+              </div>
+                
+              <div class="form-group">
+                <input type="submit" value="Submit" class="btn btn-primary">
+              </div>
+
+              <h4><a>Citation</a></h4>
+              <div class="form-group">
+                <p> United States Census Bureau. “Summary File.” (2009 – 2013). American Community Survey. U.S. Census Bureau’s American Community Survey Office, 2013. Stanford, CA: Stanford Laboratory for Social Research [distributor], 2016-06-23.
+              </div>
+            </form>
+          </body>
+        </div>
+
+
+        <div id="sidebar-second" class="col-md-3 col-md-pull-9">
+          <div class="well">
+            <h2>About</h2>
+            <p>The Laboratory for Social Research is a cutting edge research facility serving the faculty, graduate students, and postdoctoral scholars of Stanford’s Sociology Department.</p>
+            <p><a class="more-link" href="http://lsr.stanford.edu"><i class="fa fa-chevron-circle-right"></i> <span>Website</span></a></p>
+          </div>
+          <div class="well">
+            <h2>American Community Survey</h2>
+            <img src="{{ url_for('static', filename='assets/cardinal/images/samples/LemonsNTower1170.jpg') }}" alt="" />
+            <p>The American Community Survey (ACS) is an ongoing statistical survey by the U.S. Census Bureau that gathers information on variables such as jobs and occupations, educational attainment, and income, 27 of which are available for selection on this website. </p>
+            <p>The dataset provided is the ACS 5-Year Data for the years 2009-2013, and is organized by county. For finer geographical granularity, the dataset has been further organized by zipcode. </p>
+            <p>For more information on the American Community Survey or on accessing datasets online, see the link below. </p>
+            <p><a class="more-link" href="https://www.census.gov/programs-surveys/acs/"><i class="fa fa-chevron-circle-right"></i> <span>More information</span></a></p>
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+    <!-- #content--> 
+    
+  </div>
+  <!-- #su-content --> 
+</div>
+<!-- #su-wrap --> 
+
+<!-- BEGIN footer -->
+<div id="footer" class="clearfix footer" role="contentinfo">
+  <!-- Fat footer start -->
+  <div class="container">
+    <div id="footer-content" class="row">
+      
+    </div>
+  </div>
+  <!-- Fat footer end -->
+  
+  <!-- Global footer snippet start -->
+  <div id="global-footer">
+    <div class="container">
+      <div class="row">
+        <div id="bottom-logo" class="col-xs-6 col-sm-2"> <a href="http://www.stanford.edu"> <img src="{{ url_for('static', filename='assets/cardinal/images/footer-stanford-logo@2x.png') }}" alt="Stanford University" width="105" height="49"/> </a> </div>
+        <!-- #bottom-logo end -->
+        <div id="bottom-text" class="col-xs-6 col-sm-10">
+          <ul>
+            <li class="home"><a href="http://www.stanford.edu">SU Home</a></li>
+            <li class="maps alt"><a href="http://visit.stanford.edu/plan/maps.html" class="su-link" data-ua-action="visit.stanford.edu/plan/maps" data-ua-label="global-footer">Maps &amp; Directions</a></li>
+            <li class="search-stanford"><a href="http://stanford.edu/search/">Search Stanford</a></li>
+            <li class="terms alt"><a href="http://www.stanford.edu/site/terms.html">Terms of Use</a></li>
+            <li class="emergency-info"><a href="http://emergency.stanford.edu/" class="su-link" data-ua-label="global-footer">Emergency Info</a></li>
+          </ul>
+        </div>
+        <!-- .bottom-text end -->
+        <div class="clear"></div>
+        <p class="copyright vcard col-sm-10">&copy; <span class="fn org">Stanford University</span>.&nbsp; <span class="adr"> <span class="locality">Stanford</span>, <span class="region">California</span> <span class="postal-code">94305</span></span>. <span id="termsofuse"><a href="http://www.stanford.edu/group/security/dmca.html" class="su-link" data-ua-action="copyright-complaints" data-ua-label="global-footer">Copyright Complaints</a>&nbsp;&nbsp;&nbsp;<a href="https://adminguide.stanford.edu/chapter-1/subchapter-5/policy-1-5-4" class="su-link" data-ua-action="trademark-notice" data-ua-label="global-footer">Trademark Notice</a></span></p>
+      </div>
+      <!-- .row end --> 
+    </div>
+    <!-- .container end --> 
+  </div>
+  <!-- Global footer snippet end --> 
+  
+</div>
+<!-- END footer --> 
+
+</body>
+</html>
