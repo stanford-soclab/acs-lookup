@@ -84,12 +84,3 @@ ACS_VARIABLES = OrderedDict([
 	('B19083_001E', 'Gini')
 ])
 
-'''
-variable_query = "select county, B01003_001E from acs_data" 
-variable_query_results = db.execute(variable_query).fetchall()
-#print variable_query_results
-
-pops = [float(var[1]) for var in variable_query_results[:10]]
-print sum([p**2 for p in pops])/sum(pops)
-print weighted_averages(db, ['B01003_001E'], [var[0] for var in variable_query_results][:10])
-'''
