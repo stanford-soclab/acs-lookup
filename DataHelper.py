@@ -111,7 +111,7 @@ def append_variables(csv_file, variable_codes):
 	return [csv_string, error]
 
 
-# ARGUMENTS: csv file of code to label mappings
+# ARGUMENTS: csv file of variable code and name pairs
 # OUTPUT: dict of variable names to codes
 def labels_to_codes(csv_file):
         labels_codes = []
@@ -122,9 +122,9 @@ def labels_to_codes(csv_file):
         return OrderedDict(labels_codes)
 
 
-# ARGUMENTS: csv of code to label mappings, dictionary of parent variable codes to labels
-# OUTPUT: new csv of code to label mappings with variable names added to labels
-def labels_to_codes(csv_file, dict_of_parent_labels):
+# ARGUMENTS: csv of variable code and name pairs, dictionary of parent variable codes to names
+# OUTPUT: new csv of variable code and name pairs with parent variable names added to variable names 
+def add_parent_variable_names(csv_file, dict_of_parent_labels):
         with open(csv_file, 'rb') as f:
                 labels_csv = csv.reader(f)
                 csv_file_new = csv_file[:-4] + '_new.csv'
