@@ -120,23 +120,6 @@ def labels_to_codes(csv_file):
                 for row in labels_csv:
                         labels_codes.append((row[0], row[1]))
         return OrderedDict(labels_codes)
-
-
-# ARGUMENTS: csv of variable code and name pairs, dictionary of parent variable codes to names
-# OUTPUT: new csv of variable code and name pairs with parent variable names added to variable names 
-def add_parent_variable_names(csv_file, dict_of_parent_labels):
-        with open(csv_file, 'rb') as f:
-                labels_csv = csv.reader(f)
-                csv_file_new = csv_file[:-4] + '_new.csv'
-                
-                with open(csv_file_new, 'wb') as nf:
-                        labels_csv_new = csv.writer(nf)
-
-                        for row in labels_csv:
-                                var_code = row[0][:6] + '_001E'
-                                var_name = dict_of_parent_labels[var_code] 
-                                newline = [row[0], var_name + row[1]]
-                                labels_csv_new.writerow(newline)
                                  
 
 # dict of ACS codes to English fields; uses OrderedDict so the options appear in order on selection box
