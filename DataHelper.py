@@ -5,9 +5,6 @@ import csv
 import sqlite3
 from collections import OrderedDict
 
-# TODO add something that checks length of zip and county codes, adds 0 to front if necessary
-# TODO why do 4 digit zipcodes not show up?
-
 # checks if filename is .csv
 def allowed_file(filename):
 	return '.' in filename and filename.rsplit('.', 1)[1] == 'csv'
@@ -64,7 +61,6 @@ def append_variables(csv_file, variable_codes):
 			if index_of_zip != None:
 				for code in variable_codes:
 					array_of_arrays[row_index].append(ACS_VARIABLES[code])
-
 		        else:
 			    error = 'First row of file: did not find column for zipcode\n'
                             break
@@ -113,16 +109,18 @@ def append_variables(csv_file, variable_codes):
 
 # ARGUMENTS: csv file of variable code and name pairs
 # OUTPUT: dict of variable names to codes
-def labels_to_codes(csv_file):
-        labels_codes = []
+def create_labelcode_dict(csv_file):
+        labelcode_pairs = []
         with open(csv_file, 'rb') as f:
                 labels_csv = csv.reader(f)
                 for row in labels_csv:
-                        labels_codes.append((row[0], row[1]))
-        return OrderedDict(labels_codes)
+                        labelcode_pairs.append((row[0], row[1]))
+        return OrderedDict(labelcode_pairs)
                                  
 
 # dict of ACS codes to English fields; uses OrderedDict so the options appear in order on selection box
+ACS_VARIABLES = create_labelcode_dict('acs_new/codes_names.csv')
+'''
 ACS_VARIABLES = OrderedDict([
 	('B03002_001E', 'Hispanic Or Latino Origin By Race Total'),
 	('B03002_003E', 'White Alone'),
@@ -152,3 +150,4 @@ ACS_VARIABLES = OrderedDict([
 	('B23025_003E', 'Civilian Labor Force'),
 	('B19083_001E', 'Gini')
 ])
+'''
