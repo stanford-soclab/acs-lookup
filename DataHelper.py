@@ -34,6 +34,24 @@ def weighted_averages(db, variable_codes, county_list):
         return result
 
 
+# Checks if the first/second row is labled with some variation of 'zip', saves that index
+def check_first_row(array_of_arrays, row_index):
+        error = ''
+        row = array_of_arrays[row_index]
+        for cell_index in xrange(len(row)):
+                if row[cell_index].lower() in ['zip', 'zip_code', 'zipcode', 'zip-code', 'zipcodes', 'zip_codes', 'zip-codes']:
+                        index_of_zip = cell_index
+                        break
+
+        # appends variable names of desired variable codes to the first row
+        if index_of_zip != None:
+                for code in variable_codes:
+                        array_of_arrays[row_index].append(ACS_VARIABLES[code])
+        else:
+                error = 'First row of file: did not find column for zipcode\n'
+        return error
+
+
 # ARGUMENTS: raw uploaded CSV file, array of variable code names in string form
 # OUTPUT: updated CSV with new variables appended, **IN STRING FORM**
 def append_variables(csv_file, variable_codes):
@@ -50,21 +68,8 @@ def append_variables(csv_file, variable_codes):
 	for row_index in xrange(len(array_of_arrays)):
                 # First row
 		if row_index == 0: 
-			# checks if the first/second row is labled with some variation of 'zip', saves that index
-			row = array_of_arrays[row_index]
-			for cell_index in xrange(len(row)):
-				if row[cell_index].lower() in ['zip', 'zip_code', 'zipcode', 'zip-code', 'zipcodes', 'zip_codes', 'zip-codes']:
-					index_of_zip = cell_index
-					break
-
-			# appends variable names of desired variable codes to the first row
-			if index_of_zip != None:
-				for code in variable_codes:
-					array_of_arrays[row_index].append(ACS_VARIABLES[code])
-		        else:
-			    error = 'First row of file: did not find column for zipcode\n'
-                            break
-
+                        error = check_first_row(array_of_arrays, row_index)
+                        if error != '': break
                 # Other rows
                 else:
 			zip_code = str(array_of_arrays[row_index][index_of_zip])
@@ -119,7 +124,7 @@ def create_labelcode_dict(csv_file):
                                  
 
 # dict of ACS codes to English fields; uses OrderedDict so the options appear in order on selection box
-ACS_VARIABLES = create_labelcode_dict('acs_new/codes_names.csv')
+ACS_VARIABLES = create_labelcode_dict('acs_new/parent_codes_names.csv')
 '''
 ACS_VARIABLES = OrderedDict([
 	('B03002_001E', 'Hispanic Or Latino Origin By Race Total'),
