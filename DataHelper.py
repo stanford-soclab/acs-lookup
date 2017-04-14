@@ -34,22 +34,15 @@ def weighted_averages(db, variable_codes, county_list):
         return result
 
 
-# Checks if the first/second row is labled with some variation of 'zip', saves that index
-def check_first_row(array_of_arrays, row_index):
-        error = ''
-        row = array_of_arrays[row_index]
-        for cell_index in xrange(len(row)):
-                if row[cell_index].lower() in ['zip', 'zip_code', 'zipcode', 'zip-code', 'zipcodes', 'zip_codes', 'zip-codes']:
-                        index_of_zip = cell_index
-                        break
-
-        # appends variable names of desired variable codes to the first row
-        if index_of_zip != None:
-                for code in variable_codes:
-                        array_of_arrays[row_index].append(ACS_VARIABLES[code])
-        else:
-                error = 'First row of file: did not find column for zipcode\n'
-        return error
+# ARGUMENTS: list of parent variable codes from parent_codes_names.csv
+# OUTPUT: list of child variables with that parent variable code from codes_names.csv
+def collect_child_variables(variable_codes):
+        result = []
+        for parent_code in variable_codes:
+                for child_code in ACS_CHILD_VARIABLES.keys():
+                        if parent_code in child_code:
+                                result.append(child_code)
+        return result
 
 
 # ARGUMENTS: raw uploaded CSV file, array of variable code names in string form
@@ -58,6 +51,8 @@ def append_variables(csv_file, variable_codes):
 	db = sqlite3.connect('acs/acs.db') # opens the ACS db
 	index_of_zip = None # the cell index of the ZIP column
         error = '' # empty string for now, TODO track errors somehow
+        '''
+        child_variable_codes = collect_child_variables(variable_codes)
 
 	# reads in csv as array of arrays
 	array_of_arrays = []
@@ -68,19 +63,29 @@ def append_variables(csv_file, variable_codes):
 	for row_index in xrange(len(array_of_arrays)):
                 # First row
 		if row_index == 0: 
-                        error = check_first_row(array_of_arrays, row_index)
-                        if error != '': break
+                        row = array_of_arrays[row_index]
+                        for cell_index in xrange(len(row)):
+                                if row[cell_index].lower() in ['zip', 'zip_code', 'zipcode', 'zip-code', 'zipcodes', 'zip_codes', 'zip-codes']:
+                                        index_of_zip = cell_index
+                                        break
+
+                        # appends variable names of desired variable codes to the first row
+                        if index_of_zip != None:
+                                for code in child_variable_codes:
+                                        array_of_arrays[row_index].append(ACS_CHILD_VARIABLES[code])
+                        else:
+                                error = 'First row of file: did not find column for zipcode\n'
+                                break
                 # Other rows
                 else:
 			zip_code = str(array_of_arrays[row_index][index_of_zip])
-                        # Remove extra zeroes from beginning of zip code; TODO fix the zip codes in acs directory instead
+                        # Remove extra zeroes from beginning of zip code
                         while zip_code[0] == '0':
                                 zip_code = zip_code[1:] 
 			county_query = "select county from county_zip where zip = '{}'".format(zip_code)
 			county_query_results = db.execute(county_query).fetchall()
 
 			if len(county_query_results) > 0:
-				# HACKY HACKY HACKY - only using first county, missing 0s for some county codes, adding them manually
                                 county_list = []
                                 for county_query in county_query_results:
                                         county = str(county_query[0])
@@ -88,12 +93,12 @@ def append_variables(csv_file, variable_codes):
                                                 for _ in xrange(5-len(county)): county = '0' + county # add 0s to beginning of county code if needed
                                         county_list.append(county)
                                 # append variable values for the given row
-                                variable_values = weighted_averages(db, variable_codes, county_list)
+                                variable_values = weighted_averages(db, child_variable_codes, county_list)
                                 for val in variable_values:
 				        array_of_arrays[row_index].append(val)
                         else:
                                 error = "Row {}: did not find county codes for zip code {}".format(row_index, zip_code)
-
+'''
 	# closes the db after usage
 	db.close()
 
@@ -125,6 +130,7 @@ def create_labelcode_dict(csv_file):
 
 # dict of ACS codes to English fields; uses OrderedDict so the options appear in order on selection box
 ACS_VARIABLES = create_labelcode_dict('acs_new/parent_codes_names.csv')
+ACS_CHILD_VARIABLES = create_labelcode_dict('acs_new/codes_names.csv')
 '''
 ACS_VARIABLES = OrderedDict([
 	('B03002_001E', 'Hispanic Or Latino Origin By Race Total'),
