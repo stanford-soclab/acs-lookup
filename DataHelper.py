@@ -34,6 +34,22 @@ def weighted_averages(db, variable_codes, county_list):
         return result
 
 
+# ARGUMENTS: csv file of variable code and name pairs
+# OUTPUT: dict of variable names to codes
+def create_labelcode_dict(csv_file):
+        labelcode_pairs = []
+        with open(csv_file, 'rb') as f:
+                labels_csv = csv.reader(f)
+                for row in labels_csv:
+                        labelcode_pairs.append((row[0], row[1]))
+        return OrderedDict(labelcode_pairs)
+                                 
+
+# dict of ACS codes to English fields; uses OrderedDict so the options appear in order on selection box
+ACS_VARIABLES = create_labelcode_dict('acs_new/parent_codes_names.csv')
+ACS_CHILD_VARIABLES = create_labelcode_dict('acs_new/codes_names.csv')
+
+
 # ARGUMENTS: list of parent variable codes from parent_codes_names.csv
 # OUTPUT: list of child variables with that parent variable code from codes_names.csv
 def collect_child_variables(variable_codes):
@@ -51,14 +67,12 @@ def append_variables(csv_file, variable_codes):
 	db = sqlite3.connect('acs/acs.db') # opens the ACS db
 	index_of_zip = None # the cell index of the ZIP column
         error = '' # empty string for now, TODO track errors somehow
-        '''
         child_variable_codes = collect_child_variables(variable_codes)
 
 	# reads in csv as array of arrays
 	array_of_arrays = []
 	for row in csv.reader(csv_file):
 		array_of_arrays.append(row)
-	
 	# modifies csv in place to append extra column
 	for row_index in xrange(len(array_of_arrays)):
                 # First row
@@ -76,6 +90,7 @@ def append_variables(csv_file, variable_codes):
                         else:
                                 error = 'First row of file: did not find column for zipcode\n'
                                 break
+	'''
                 # Other rows
                 else:
 			zip_code = str(array_of_arrays[row_index][index_of_zip])
@@ -117,20 +132,6 @@ def append_variables(csv_file, variable_codes):
 	return [csv_string, error]
 
 
-# ARGUMENTS: csv file of variable code and name pairs
-# OUTPUT: dict of variable names to codes
-def create_labelcode_dict(csv_file):
-        labelcode_pairs = []
-        with open(csv_file, 'rb') as f:
-                labels_csv = csv.reader(f)
-                for row in labels_csv:
-                        labelcode_pairs.append((row[0], row[1]))
-        return OrderedDict(labelcode_pairs)
-                                 
-
-# dict of ACS codes to English fields; uses OrderedDict so the options appear in order on selection box
-ACS_VARIABLES = create_labelcode_dict('acs_new/parent_codes_names.csv')
-ACS_CHILD_VARIABLES = create_labelcode_dict('acs_new/codes_names.csv')
 '''
 ACS_VARIABLES = OrderedDict([
 	('B03002_001E', 'Hispanic Or Latino Origin By Race Total'),
