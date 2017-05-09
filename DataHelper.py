@@ -64,7 +64,7 @@ def collect_child_variables(variable_codes):
 # ARGUMENTS: raw uploaded CSV file, array of variable code names in string form
 # OUTPUT: updated CSV with new variables appended, **IN STRING FORM**
 def append_variables(csv_file, variable_codes):
-	db = sqlite3.connect('acs/acs.db') # opens the ACS db
+	db = sqlite3.connect('acs_new/acs_data/acs_db') # opens the ACS db
 	index_of_zip = None # the cell index of the ZIP column
         error = '' # empty string for now, TODO track errors somehow
         child_variable_codes = collect_child_variables(variable_codes)
@@ -90,7 +90,6 @@ def append_variables(csv_file, variable_codes):
                         else:
                                 error = 'First row of file: did not find column for zipcode\n'
                                 break
-	'''
                 # Other rows
                 else:
 			zip_code = str(array_of_arrays[row_index][index_of_zip])
@@ -107,6 +106,7 @@ def append_variables(csv_file, variable_codes):
                                         if len(county) < 5:
                                                 for _ in xrange(5-len(county)): county = '0' + county # add 0s to beginning of county code if needed
                                         county_list.append(county)
+	'''
                                 # append variable values for the given row
                                 variable_values = weighted_averages(db, child_variable_codes, county_list)
                                 for val in variable_values:
