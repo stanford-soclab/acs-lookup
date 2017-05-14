@@ -72,7 +72,7 @@ def collect_child_variables(variable_codes):
         result = []
         for parent_code in variable_codes:
                 for child_code in ACS_CHILD_VARIABLES.keys():
-                        if parent_code == child_code.split('_')[0]:
+                        if parent_code in child_code:
                                 result.append(child_code)
         return result
 
@@ -91,8 +91,7 @@ def append_variables(csv_file, variable_codes):
 	for row in csv.reader(csv_file):
 		array_of_arrays.append(row)
 	# modifies csv in place to append extra column
-        # for row_index in xrange(len(array_of_arrays)):
-        for row_index in xrange(100):
+	for row_index in xrange(len(array_of_arrays)):
                 # First row
 		if row_index == 0: 
                         row = array_of_arrays[row_index]
@@ -111,11 +110,9 @@ def append_variables(csv_file, variable_codes):
                 # Other rows
                 else:
 			zip_code = str(array_of_arrays[row_index][index_of_zip])
-                        # TODO: Check if zipcode is int
                         # Remove extra zeroes from beginning of zip code
                         while zip_code[0] == '0':
                                 zip_code = zip_code[1:] 
-                        '''
 			county_query = "select county from county_zip where zip = '{}'".format(zip_code)
 			county_query_results = db.execute(county_query).fetchall()
 
@@ -127,16 +124,13 @@ def append_variables(csv_file, variable_codes):
                                                 for _ in xrange(5-len(county)): county = '0' + county # add 0s to beginning of county code if needed
                                         county_list.append(county)
                                 # append variable values for the given row
-                        '''
-                        # for var_code in child_variable_codes:
-                        for var_code in child_variable_codes[:1]:
-                                var_query = "select {} from {} where zip = '{}'".format(var_code, var_table_dict[var_code], zip_code)
-                                try: 
-                                        var_val = db.execute(var_query).fetchall()[0][0]
-                                except:
-                                        var_val = 'n/a'
-			        array_of_arrays[row_index].append(var_val)
-
+                                variable_values = weighted_averages(db, child_variable_codes, county_list, var_table_dict)
+                                for val in variable_values:
+				        array_of_arrays[row_index].append(val)
+                        else:
+                                error = "Row {}: did not find county codes for zip code {}".format(row_index, zip_code)
+	'''
+'''
 	# closes the db after usage
 	db.close()
 
