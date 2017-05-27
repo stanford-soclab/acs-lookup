@@ -33,8 +33,8 @@ def create_labelcode_dict(csv_file):
                                  
 
 # dict of ACS codes to English fields; uses OrderedDict so the options appear in order on selection box
-ACS_VARIABLES = create_labelcode_dict('acs/parent_codes_names.csv')
-ACS_CHILD_VARIABLES = create_labelcode_dict('acs/codes_names.csv')
+ACS_VARIABLES = create_labelcode_dict('ACS/parent_codes_names.csv')
+ACS_CHILD_VARIABLES = create_labelcode_dict('ACS/codes_names.csv')
 
 
 # ARGUMENTS: list of parent variable codes from parent_codes_names.csv
@@ -73,7 +73,7 @@ def create_query(child_variable_codes, var_table_dict):
 # ARGUMENTS: raw uploaded CSV file, array of variable code names in string form
 # OUTPUT: updated CSV with new variables appended, **IN STRING FORM**
 def append_variables(csv_file, variable_codes):
-	db = sqlite3.connect('acs/acs_data/acs_db') # opens the ACS db
+	db = sqlite3.connect('ACS/acs_data/acs_db') # opens the ACS db
 	index_of_zip = None # the cell index of the ZIP column
         error = '' # empty string for now, TODO track errors somehow
         child_variable_codes = collect_child_variables(variable_codes)
