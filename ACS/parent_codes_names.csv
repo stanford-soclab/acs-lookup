@@ -1,0 +1,245 @@
+B01001,Sex By Age
+B01001A,Sex By Age (White Alone)
+B01001B,Sex By Age (Black Or African American Alone)
+B01001C,Sex By Age (American Indian And Alaska Native Alone)
+B01001D,Sex By Age (Asian Alone)
+B01001E,Sex By Age (Native Hawaiian And Other Pacific Islander Alone)
+B01001F,Sex By Age (Some Other Race Alone)
+B01001G,Sex By Age (Two Or More Races)
+B01001H,"Sex By Age (White Alone, Not Hispanic Or Latino)"
+B01001I,Sex By Age (Hispanic Or Latino)
+B01002,Median Age By Sex
+B01003,Total Population
+B02001,Race
+B03001,Hispanic Or Latino Origin By Specific Origin
+B03002,Hispanic Or Latino Origin By Race
+B03003,Hispanic Or Latino Origin
+B04007,Ancestry
+B05001,Nativity And Citizenship Status In The United States
+B05002,Place Of Birth By Nativity And Citizenship Status
+B05011,Period Of Naturalization
+B05012,Nativity In The United States
+B06001,Place Of Birth By Age In The United States
+B07001,Geographical Mobility In The Past Year By Age For Current Residence In The United States
+B07004A,Geographical Mobility In The Past Year (White Alone) For Current Residence In The United States
+B07004B,Geographical Mobility In The Past Year (Black Or African American Alone) For Current Residence In The United States
+B07004C,Geographical Mobility In The Past Year (American Indian And Alaska Native Alone) For Current Residence In The United States
+B07004D,Geographical Mobility In The Past Year (Asian Alone) For Current Residence In The United States
+B07004E,Geographical Mobility In The Past Year (Native Hawaiian And Other Pacific Islander Alone) For Current Residence In The United States
+B07004F,Geographical Mobility In The Past Year (Some Other Race Alone) For Current Residence In The United States
+B07004G,Geographical Mobility In The Past Year (Two Or More Races) For Current Residence In The United States
+B07004H,"Geographical Mobility In The Past Year (White Alone, Not Hispanic Or Latino) For Current Residence In The United States"
+B07004I,Geographical Mobility In The Past Year (Hispanic Or Latino) For Current Residence In The United States
+B07009,Geographical Mobility In The Past Year By Educational Attainment For Current Residence In The United States
+B07010,Geographical Mobility In The Past Year By Individual Income In The Past 12 Months (In 2012 Inflation-Adjusted Dollars) For Current Residence In The United States
+B07011,Median Income In The Past 12 Months (In 2012 Inflation-Adjusted Dollars) By Geographical Mobility In The Past Year For Current Residence In The United States
+B07012,Geographical Mobility In The Past Year By Poverty Status In The Past 12 Months For Current Residence In The United States
+B07410,Geographical Mobility In The Past Year By Individual Income In The Past 12 Months (In 2012 Inflation-Adjusted Dollars) For Residence 1 Year Ago In The United States
+B07411,Median Income In The Past 12 Months (In 2012 Inflation-Adjusted Dollars) By Geographical Mobility In The Past Year For Residence 1 Year Ago In The United States
+B07412,Geographical Mobility In The Past Year By Poverty Status In The Past 12 Months For Residence 1 Year Ago In The United States
+B09001,Population Under 18 Years By Age
+B09002,Own Children Under 18 Years By Family Type And Age
+B09005,"Household Type For Children Under 18 Years In Households (Excluding Householders, Spouses, And Unmarried Partners)"
+B09010,"Receipt Of Supplemental Security Income (Ssi), Cash Public Assistance Income, Or Food Stamps/Snap In The Past 12 Months By Household Type For Children Under 18 Years In Households"
+B11001,Household Type (Including Living Alone)
+B11001A,Household Type (Including Living Alone) (White Alone)
+B11001B,Household Type (Including Living Alone) (Black Or African American Alone)
+B11001C,Household Type (Including Living Alone) (American Indian And Alaska Native Alone)
+B11001D,Household Type (Including Living Alone) (Asian Alone)
+B11001E,Household Type (Including Living Alone) (Native Hawaiian And Other Pacific Islander Alone)
+B11001F,Household Type (Including Living Alone) (Some Other Race Alone)
+B11001G,Household Type (Including Living Alone) (Two Or More Races)
+B11001H,"Household Type (Including Living Alone) (White Alone, Not Hispanic Or Latino)"
+B11001I,Household Type (Including Living Alone) (Hispanic Or Latino)
+B11002,Household Type By Relatives And Nonrelatives For Population In Households
+B11002A,Household Type By Relatives And Nonrelatives For Population In Households (White Alone)
+B11002B,Household Type By Relatives And Nonrelatives For Population In Households (Black Or African American Alone)
+B11002C,Household Type By Relatives And Nonrelatives For Population In Households (American Indian And Alaska Native Alone)
+B11002D,Household Type By Relatives And Nonrelatives For Population In Households (Asian Alone)
+B11002E,Household Type By Relatives And Nonrelatives For Population In Households (Native Hawaiian And Other Pacific Islander Alone)
+B11002F,Household Type By Relatives And Nonrelatives For Population In Households (Some Other Race Alone)
+B11002G,Household Type By Relatives And Nonrelatives For Population In Households (Two Or More Races)
+B11002H,"Household Type By Relatives And Nonrelatives For Population In Households (White Alone, Not Hispanic Or Latino)"
+B11002I,Household Type By Relatives And Nonrelatives For Population In Households (Hispanic Or Latino)
+B11003,Family Type By Presence And Age Of Own Children Under 18 Years
+B11009,Unmarried-Partner Households By Sex Of Partner
+B11016,Household Type By Household Size
+B11017,Multigenerational Households
+B12001,Sex By Marital Status For The Population 15 Years And Over
+B12002,Sex By Marital Status By Age For The Population 15 Years And Over
+B12002A,Sex By Marital Status For The Population 15 Years And Over (White Alone)
+B12002B,Sex By Marital Status For The Population 15 Years And Over (Black Or African American Alone)
+B12002C,Sex By Marital Status For The Population 15 Years And Over (American Indian And Alaska Native Alone)
+B12002D,Sex By Marital Status For The Population 15 Years And Over (Asian Alone)
+B12002E,Sex By Marital Status For The Population 15 Years And Over (Native Hawaiian And Other Pacific Islander Alone)
+B12002F,Sex By Marital Status For The Population 15 Years And Over (Some Other Race Alone)
+B12002G,Sex By Marital Status For The Population 15 Years And Over (Two Or More Races)
+B12002H,"Sex By Marital Status For The Population 15 Years And Over (White Alone, Not Hispanic Or Latino)"
+B12002I,Sex By Marital Status For The Population 15 Years And Over (Hispanic Or Latino)
+B12007,Median Age At First Marriage
+B12501,Marriages In The Last Year By Sex By Marital Status For The Population 15 Years And Over
+B12503,Divorces In The Last Year By Sex By Marital Status For The Population 15 Years And Over
+B14001,School Enrollment By Level Of School For The Population 3 Years And Over
+B14004,Sex By College Or Graduate School Enrollment By Type Of School By Age For The Population 15 Years And Over
+B14007,School Enrollment By Detailed Level Of School For The Population 3 Years And Over
+B14007A,School Enrollment By Detailed Level Of School For The Population 3 Years And Over (White Alone)
+B14007B,School Enrollment By Detailed Level Of School For The Population 3 Years And Over (Black Or African American Alone)
+B14007C,School Enrollment By Detailed Level Of School For The Population 3 Years And Over (American Indian And Alaska Native Alone)
+B14007D,School Enrollment By Detailed Level Of School For The Population 3 Years And Over (Asian Alone)
+B14007E,School Enrollment By Detailed Level Of School For The Population 3 Years And Over (Native Hawaiian And Other Pacific Islander Alone)
+B14007F,School Enrollment By Detailed Level Of School For The Population 3 Years And Over (Some Other Race Alone)
+B14007G,School Enrollment By Detailed Level Of School For The Population 3 Years And Over (Two Or More Races)
+B14007H,"School Enrollment By Detailed Level Of School For The Population 3 Years And Over (White Alone, Not Hispanic Or Latino)"
+B14007I,School Enrollment By Detailed Level Of School For The Population 3 Years And Over (Hispanic Or Latino)
+B15001,Sex By Age By Educational Attainment For The Population 18 Years And Over
+B15002,Sex By Educational Attainment For The Population 25 Years And Over
+B15003,Educational Attainment For The Population 25 Years And Over
+B16001,Language Spoken At Home By Ability To Speak English For The Population 5 Years And Over
+B16002,"Household Language By Households In Which No One 14 And Over Speaks English Only Or Speaks A Language Other Than English At Home And Speaks English ""very Well"""
+B16006,Language Spoken At Home By Ability To Speak English For The Population 5 Years And Over (Hispanic Or Latino)
+B17001,Poverty Status In The Past 12 Months By Sex By Age
+B17001A,Poverty Status In The Past 12 Months By Sex By Age (White Alone)
+B17001B,Poverty Status In The Past 12 Months By Sex By Age (Black Or African American Alone)
+B17001C,Poverty Status In The Past 12 Months By Sex By Age (American Indian And Alaska Native Alone)
+B17001D,Poverty Status In The Past 12 Months By Sex By Age (Asian Alone)
+B17001E,Poverty Status In The Past 12 Months By Sex By Age (Native Hawaiian And Other Pacific Islander Alone)
+B17001F,Poverty Status In The Past 12 Months By Sex By Age (Some Other Race Alone)
+B17001G,Poverty Status In The Past 12 Months By Sex By Age (Two Or More Races)
+B17001H,"Poverty Status In The Past 12 Months By Sex By Age (White Alone, Not Hispanic Or Latino)"
+B17001I,Poverty Status In The Past 12 Months By Sex By Age (Hispanic Or Latino)
+B17003,Poverty Status In The Past 12 Months Of Individuals By Sex By Educational Attainment
+B17011,Aggregate Income Deficit (Dollars) In The Past 12 Months For Families By Family Type
+B17016,Poverty Status In The Past 12 Months Of Families By Family Type By Work Experience Of Householder And Spouse
+B17020A,Poverty Status In The Past 12 Months By Age (White Alone)
+B17020B,Poverty Status In The Past 12 Months By Age (Black Or African American Alone)
+B17020C,Poverty Status In The Past 12 Months By Age (American Indian And Alaska Native Alone)
+B17020D,Poverty Status In The Past 12 Months By Age (Asian Alone)
+B17020E,Poverty Status In The Past 12 Months By Age (Native Hawaiian And Other Pacific Islander Alone)
+B17020F,Poverty Status In The Past 12 Months By Age (Some Other Race Alone)
+B17020G,Poverty Status In The Past 12 Months By Age (Two Or More Races)
+B17020H,"Poverty Status In The Past 12 Months By Age (White Alone, Not Hispanic Or Latino)"
+B17020I,Poverty Status In The Past 12 Months By Age (Hispanic Or Latino)
+B17026,Ratio Of Income To Poverty Level Of Families In The Past 12 Months
+B19001,Household Income In The Past 12 Months (In 2012 Inflation-Adjusted Dollars)
+B19001A,Household Income In The Past 12 Months (In 2012 Inflation-Adjusted Dollars) (White Alone Householder)
+B19001B,Household Income In The Past 12 Months (In 2012 Inflation-Adjusted Dollars) (Black Or African American Alone Householder)
+B19001C,Household Income In The Past 12 Months (In 2012 Inflation-Adjusted Dollars) (American Indian And Alaska Native Alone Householder)
+B19001D,Household Income In The Past 12 Months (In 2012 Inflation-Adjusted Dollars) (Asian Alone Householder)
+B19001E,Household Income In The Past 12 Months (In 2012 Inflation-Adjusted Dollars) (Native Hawaiian And Other Pacific Islander Alone Householder)
+B19001F,Household Income In The Past 12 Months (In 2012 Inflation-Adjusted Dollars) (Some Other Race Alone Householder)
+B19001G,Household Income In The Past 12 Months (In 2012 Inflation-Adjusted Dollars) (Two Or More Races Householder)
+B19001H,"Household Income In The Past 12 Months (In 2012 Inflation-Adjusted Dollars) (White Alone, Not Hispanic Or Latino Householder)"
+B19001I,Household Income In The Past 12 Months (In 2012 Inflation-Adjusted Dollars) (Hispanic Or Latino Householder)
+B19013,Median Household Income In The Past 12 Months (In 2012 Inflation-Adjusted Dollars)
+B19013A,Median Household Income In The Past 12 Months (In 2012 Inflation-Adjusted Dollars) (White Alone Householder)
+B19013B,Median Household Income In The Past 12 Months (In 2012 Inflation-Adjusted Dollars) (Black Or African American Alone Householder)
+B19013C,Median Household Income In The Past 12 Months (In 2012 Inflation-Adjusted Dollars) (American Indian And Alaska Native Alone Householder)
+B19013D,Median Household Income In The Past 12 Months (In 2012 Inflation-Adjusted Dollars) (Asian Alone Householder)
+B19013E,Median Household Income In The Past 12 Months (In 2012 Inflation-Adjusted Dollars) (Native Hawaiian And Other Pacific Islander Alone Householder)
+B19013F,Median Household Income In The Past 12 Months (In 2012 Inflation-Adjusted Dollars) (Some Other Race Alone Householder)
+B19013G,Median Household Income In The Past 12 Months (In 2012 Inflation-Adjusted Dollars) (Two Or More Races Householder)
+B19013H,"Median Household Income In The Past 12 Months (In 2012 Inflation-Adjusted Dollars) (White Alone, Not Hispanic Or Latino Householder)"
+B19013I,Median Household Income In The Past 12 Months (In 2012 Inflation-Adjusted Dollars) (Hispanic Or Latino Householder)
+B19019,Median Household Income In The Past 12 Months (In 2012 Inflation-Adjusted Dollars) By Household Size
+B19051,Earnings In The Past 12 Months For Households
+B19052,Wage Or Salary Income In The Past 12 Months For Households
+B19053,Self-Employment Income In The Past 12 Months For Households
+B19054,"Interest, Dividends, Or Net Rental Income In The Past 12 Months For Households"
+B19055,Social Security Income In The Past 12 Months For Households
+B19056,Supplemental Security Income (Ssi) In The Past 12 Months For Households
+B19057,Public Assistance Income In The Past 12 Months For Households
+B19058,Public Assistance Income Or Food Stamps/Snap In The Past 12 Months For Households
+B19059,Retirement Income In The Past 12 Months For Households
+B19060,Other Types Of Income In The Past 12 Months For Households
+B19080,Household Income Quintile Upper Limits
+B19081,Mean Household Income Of Quintiles
+B19082,Shares Of Aggregate Household Income By Quintile
+B19083,Gini Index Of Income Inequality
+B19101,Family Income In The Past 12 Months (In 2012 Inflation-Adjusted Dollars)
+B19101A,Family Income In The Past 12 Months (In 2012 Inflation-Adjusted Dollars) (White Alone Householder)
+B19101B,Family Income In The Past 12 Months (In 2012 Inflation-Adjusted Dollars) (Black Or African American Alone Householder)
+B19101C,Family Income In The Past 12 Months (In 2012 Inflation-Adjusted Dollars) (American Indian And Alaska Native Alone Householder)
+B19101D,Family Income In The Past 12 Months (In 2012 Inflation-Adjusted Dollars) (Asian Alone Householder)
+B19101E,Family Income In The Past 12 Months (In 2012 Inflation-Adjusted Dollars) (Native Hawaiian And Other Pacific Islander Alone Householder)
+B19101F,Family Income In The Past 12 Months (In 2012 Inflation-Adjusted Dollars) (Some Other Race Alone Householder)
+B19101G,Family Income In The Past 12 Months (In 2012 Inflation-Adjusted Dollars) (Two Or More Races Householder)
+B19101H,"Family Income In The Past 12 Months (In 2012 Inflation-Adjusted Dollars) (White Alone, Not Hispanic Or Latino Householder)"
+B19101I,Family Income In The Past 12 Months (In 2012 Inflation-Adjusted Dollars) (Hispanic Or Latino Householder)
+B19113,Median Family Income In The Past 12 Months (In 2012 Inflation-Adjusted Dollars)
+B19113A,Median Family Income In The Past 12 Months (In 2012 Inflation-Adjusted Dollars) (White Alone Householder)
+B19113B,Median Family Income In The Past 12 Months (In 2012 Inflation-Adjusted Dollars) (Black Or African American Alone Householder)
+B19113C,Median Family Income In The Past 12 Months (In 2012 Inflation-Adjusted Dollars) (American Indian And Alaska Native Alone Householder)
+B19113D,Median Family Income In The Past 12 Months (In 2012 Inflation-Adjusted Dollars) (Asian Alone Householder)
+B19113E,Median Family Income In The Past 12 Months (In 2012 Inflation-Adjusted Dollars) (Native Hawaiian And Other Pacific Islander Alone Householder)
+B19113F,Median Family Income In The Past 12 Months (In 2012 Inflation-Adjusted Dollars) (Some Other Race Alone Householder)
+B19113G,Median Family Income In The Past 12 Months (In 2012 Inflation-Adjusted Dollars) (Two Or More Races)
+B19113H,"Median Family Income In The Past 12 Months (In 2012 Inflation-Adjusted Dollars) (White Alone, Not Hispanic Or Latino Householder)"
+B19113I,Median Family Income In The Past 12 Months (In 2012 Inflation-Adjusted Dollars) (Hispanic Or Latino Householder)
+B19119,Median Family Income In The Past 12 Months (In 2012 Inflation-Adjusted Dollars) By Family Size
+B19131,Family Type By Presence Of Own Children Under 18 Years By Family Income In The Past 12 Months (In 2012 Inflation-Adjusted Dollars)
+B19301,Per Capita Income In The Past 12 Months (In 2012 Inflation-Adjusted Dollars)
+B19301A,Per Capita Income In The Past 12 Months (In 2012 Inflation-Adjusted Dollars) (White Alone)
+B19301B,Per Capita Income In The Past 12 Months (In 2012 Inflation-Adjusted Dollars) (Black Or African American Alone)
+B19301C,Per Capita Income In The Past 12 Months (In 2012 Inflation-Adjusted Dollars) (American Indian And Alaska Native Alone)
+B19301D,Per Capita Income In The Past 12 Months (In 2012 Inflation-Adjusted Dollars) (Asian Alone)
+B19301E,Per Capita Income In The Past 12 Months (In 2012 Inflation-Adjusted Dollars) (Native Hawaiian And Other Pacific Islander Alone)
+B19301F,Per Capita Income In The Past 12 Months (In 2012 Inflation-Adjusted Dollars) (Some Other Race Alone)
+B19301G,Per Capita Income In The Past 12 Months (In 2012 Inflation-Adjusted Dollars) (Two Or More Races)
+B19301H,"Per Capita Income In The Past 12 Months (In 2012 Inflation-Adjusted Dollars) (White Alone, Not Hispanic Or Latino)"
+B19301I,Per Capita Income In The Past 12 Months (In 2012 Inflation-Adjusted Dollars) (Hispanic Or Latino)
+B19313,Aggregate Income In The Past 12 Months (In 2012 Inflation-Adjusted Dollars)
+B22002,Receipt Of Food Stamps/Snap In The Past 12 Months By Presence Of Children Under 18 Years By Household Type For Households
+B22003,Receipt Of Food Stamps/Snap In The Past 12 Months By Poverty Status In The Past 12 Months For Households
+B22005A,Receipt Of Food Stamps/Snap In The Past 12 Months By Race Of Householder (White Alone)
+B22005B,Receipt Of Food Stamps/Snap In The Past 12 Months By Race Of Householder (Black Or African American Alone)
+B22005C,Receipt Of Food Stamps/Snap In The Past 12 Months By Race Of Householder (American Indian And Alaska Native Alone)
+B22005D,Receipt Of Food Stamps/Snap In The Past 12 Months By Race Of Householder (Asian Alone)
+B22005E,Receipt Of Food Stamps/Snap In The Past 12 Months By Race Of Householder (Native Hawaiian And Other Pacific Islander Alone)
+B22005F,Receipt Of Food Stamps/Snap In The Past 12 Months By Race Of Householder (Some Other Race Alone)
+B22005G,Receipt Of Food Stamps/Snap In The Past 12 Months By Race Of Householder (Two Or More Races)
+B22005H,"Receipt Of Food Stamps/Snap In The Past 12 Months By Race Of Householder (White Alone, Not Hispanic Or Latino)"
+B22005I,Receipt Of Food Stamps/Snap In The Past 12 Months By Race Of Householder (Hispanic Or Latino)
+B22007,Receipt Of Food Stamps/Snap In The Past 12 Months By Family Type By Number Of Workers In Family In The Past 12 Months
+B23006,Educational Attainment By Employment Status For The Population 25 To 64 Years
+B23020,Mean Usual Hours Worked In The Past 12 Months For Workers 16 To 64 Years
+B23025,Employment Status For The Population 16 Years And Over
+B24011,Occupation By Median Earnings In The Past 12 Months (In 2012 Inflation-Adjusted Dollars) For The Civilian Employed Population 16 Years And Over
+B24080,Sex By Class Of Worker For The Civilian Employed Population 16 Years And Over
+B25003,Tenure
+B25034,Year Structure Built
+B25035,Median Year Structure Built
+B25064,Median Gross Rent (Dollars)
+B25070,Gross Rent As A Percentage Of Household Income In The Past 12 Months
+B25075,Value
+B25076,Lower Value Quartile (Dollars)
+B25077,Median Value (Dollars)
+B25078,Upper Value Quartile (Dollars)
+B25097,Mortgage Status By Median Value (Dollars)
+B25104,Monthly Housing Costs
+B25105,Median Monthly Housing Costs (Dollars)
+B25106,Tenure By Housing Costs As A Percentage Of Household Income In The Past 12 Months
+B26001,Group Quarters Population
+B27001,Health Insurance Coverage Status By Sex By Age
+C02003,Detailed Race
+C15002A,Sex By Educational Attainment For The Population 25 Years And Over (White Alone)
+C15002B,Sex By Educational Attainment For The Population 25 Years And Over (Black Or African American Alone)
+C15002C,Sex By Educational Attainment For The Population 25 Years And Over (American Indian And Alaska Native Alone)
+C15002D,Sex By Educational Attainment For The Population 25 Years And Over (Asian Alone)
+C15002E,Sex By Educational Attainment For The Population 25 Years And Over (Native Hawaiian And Other Pacific Islander Alone)
+C15002F,Sex By Educational Attainment For The Population 25 Years And Over (Some Other Race Alone)
+C15002G,Sex By Educational Attainment For The Population 25 Years And Over (Two Or More Races)
+C15002H,"Sex By Educational Attainment For The Population 25 Years And Over (White Alone, Not Hispanic Or Latino)"
+C15002I,Sex By Educational Attainment For The Population 25 Years And Over (Hispanic Or Latino)
+C17002,Ratio Of Income To Poverty Level In The Past 12 Months
+C18108,Age By Number Of Disabilities
+C24050,Industry By Occupation For The Civilian Employed Population 16 Years And Over
+C27001A,Health Insurance Coverage Status By Age (White Alone)
+C27001B,Health Insurance Coverage Status By Age (Black Or African American Alone)
+C27001C,Health Insurance Coverage Status By Age (American Indian And Alaska Native Alone)
+C27001D,Health Insurance Coverage Status By Age (Asian Alone)
+C27001E,Health Insurance Coverage Status By Age (Native Hawaiian And Other Pacific Islander Alone)
+C27001F,Health Insurance Coverage Status By Age (Some Other Race Alone)
+C27001G,Health Insurance Coverage Status By Age (Two Or More Races)
+C27001H,"Health Insurance Coverage Status By Age (White Alone, Not Hispanic Or Latino)"
+C27001I,Health Insurance Coverage Status By Age (Hispanic Or Latino)
+C27004,Employer-Based Health Insurance By Sex By Age
